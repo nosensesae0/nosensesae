@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoSenseSae - Serviços Exclusivos</title>
+  <meta name="description" content="Serviços digitais especializados. Não existe gênio sem custo.">
+  <link rel="shortcut icon" href="https://nosense.neocities.org/perfil_512%20(2).png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== VARIÁVEIS DE CONTROLE ===== */
+    :root {
+      /* Configurações principais */
+      --discount-active: 0; /* 1 para ativo, 0 para inativo */
+      --discount-percentage: 50;
+      --discount-name: "PROMOÇÃO RELÂMPAGO";
+      
+      /* Cores principais */
+      --primary-dark: #0a0a0a;
+      --secondary-dark: #1a1a1a;
+      --accent-red: #cc0000;
+      --accent-purple: #6600cc;
+      --accent-blue: #0066cc;
+      --accent-green: #00cc66;
+      --text-primary: #e6e6e6;
+      --text-secondary: #b3b3b3;
+      
+      /* Elementos de UI */
+      --card-bg: rgba(30, 30, 30, 0.9);
+      --card-border: 1px solid rgba(102, 0, 204, 0.5);
+      --glow-effect: 0 0 15px rgba(204, 0, 0, 0.6);
+      --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      
+      /* Textos personalizáveis */
+      --slogan-main: "Eu ofereço as asas pro sonho, mas cobro o preço pra você voar.";
+      --slogan-secondary: "Quer ser Funcionário da Vitória Ou Fantasma do Próprio Talento?";
+      --business-name: "NOSENSESAE";
+      --business-tagline: "Serviços Exclusivos";
+      
+      /* Configurações de segurança */
+      --security-mode: 0; /* 1 para ativo, 0 para inativo */
+    }
+    
+    /* ===== ESTILOS GERAIS ===== */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body { 
+      background-color: var(--primary-dark);
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(102, 0, 204, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(204, 0, 0, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(0, 102, 204, 0.15) 0%, transparent 25%);
+      color: var(--text-primary); 
+      line-height: 1.6; 
+      font-family: 'Roboto', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    
+    /* Efeito de partículas */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.4;
+    }
+    
+    /* Loading Screen */
+    #loading { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: var(--primary-dark); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-direction: column; 
+      z-index: 9999; 
+      transition: opacity 0.5s ease-out; 
+    }
+    
+    .loading-spinner { 
+      width: 60px; 
+      height: 60px; 
+      border: 4px solid rgba(204, 0, 0, 0.2); 
+      border-radius: 50%; 
+      border-top-color: var(--accent-red); 
+      animation: spin 1s linear infinite; 
+      margin-bottom: 20px; 
+    }
+    
+    @keyframes spin { 
+      0% { transform: rotate(0deg); } 
+      100% { transform: rotate(360deg); } 
+    }
+    
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 20px; 
+    }
+    
+    /* Header Styles */
+    header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 20px 0; 
+      margin-bottom: 30px; 
+      border-bottom: 1px solid rgba(102, 0, 204, 0.3);
+      animation: slideDown 0.7s ease; 
+    }
+    
+    @keyframes slideDown { 
+      from { opacity:0; transform:translateY(-20px); } 
+      to { opacity:1; transform:translateY(0); } 
+    }
+    
+    .logo { 
+      display: flex; 
+      align-items: center; 
+      gap: 15px; 
+    }
+    
+    .logo img { 
+      width: 60px; 
+      height: 60px; 
+      border-radius: 50%; 
+      object-fit: cover;
+      border: 2px solid var(--accent-purple);
+      box-shadow: var(--glow-effect);
+      transition: transform 0.3s ease;
+      filter: hue-rotate(0deg) brightness(1.1);
+    }
+    
+    .logo img:hover {
+      transform: rotate(10deg);
+      filter: hue-rotate(45deg) brightness(1.2);
+    }
+    
+    .logo h1 { 
+      font-size: 28px; 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px rgba(204, 0, 0, 0.3);
+    }
+    
+    .logo span { 
+      font-size: 14px; 
+      color: var(--text-secondary); 
+      display: block;
+      margin-top: 5px;
+    }
+    
+    .header-buttons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .header-btn { 
+      background: rgba(30, 30, 30, 0.8); 
+      border: 1px solid rgba(102, 0, 204, 0.5); 
+      color: var(--text-primary); 
+      padding: 8px 15px; 
+      border-radius: 20px; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      font-size: 14px; 
+      transition: all 0.3s; 
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .header-btn:hover { 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      color: #fff; 
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(204, 0, 0, 0.3);
+      border-color: transparent;
+    }
+    
+    /* Hero Section */
+    .hero { 
+      text-align: center; 
+      margin-bottom: 50px; 
+      padding: 50px 40px; 
+      background: rgba(26, 26, 26, 0.7); 
+      border-radius: 15px; 
+      box-shadow: var(--card-shadow);
+      border: var(--card-border);
+      animation: fadeIn 1s ease; 
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(102, 0, 204, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h2 { 
+      font-size: 36px; 
+      margin-bottom: 15px; 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      text-shadow: 0 0 10px rgba(204, 0, 0, 0.3);
+    }
+    
+    .hero p { 
+      font-size: 18px; 
+      max-width: 700px; 
+      margin: 0 auto 25px; 
+      color: var(--text-secondary); 
+    }
+    
+    .slogan-secondary {
+      font-style: italic;
+      margin-top: 20px;
+      padding: 15px;
+      border-left: 3px solid var(--accent-purple);
+      background: rgba(102, 0, 204, 0.1);
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    
+    .cta-button { 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      color: white; 
+      border: none; 
+      padding: 14px 35px; 
+      border-radius: 30px; 
+      font-size: 17px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      transition: all 0.3s ease; 
+      animation: pulse 2s infinite; 
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(204, 0, 0, 0.3);
+    }
+    
+    .cta-button.email {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      animation: pulsePurple 2s infinite;
+    }
+    
+    .cta-button:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 8px 20px rgba(204, 0, 0, 0.5); 
+    }
+    
+    @keyframes pulse { 
+      0%, 100% { transform: scale(1); } 
+      50% { transform: scale(1.05); } 
+    }
+    
+    @keyframes pulsePurple { 
+      0%, 100% { transform: scale(1); box-shadow: 0 5px 15px rgba(102, 0, 204, 0.3); } 
+      50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(102, 0, 204, 0.5); } 
+    }
+    
+    /* Section Titles */
+    .section-title { 
+      text-align: center; 
+      font-size: 32px; 
+      margin-bottom: 40px; 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      position: relative; 
+      padding-bottom: 15px; 
+      text-shadow: 0 0 10px rgba(204, 0, 0, 0.3);
+    }
+    
+    .section-title::after { 
+      content: ''; 
+      position: absolute; 
+      bottom: 0; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      width: 80px; 
+      height: 3px; 
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+      border-radius: 2px;
+    }
+    
+    /* Promoção Banner */
+    .promo-banner {
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      animation: glow 2s infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+      }
+      to {
+        box-shadow: 0 0 20px rgba(204, 0, 0, 0.8);
+      }
+    }
+    
+    /* Products Grid */
+    .products-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+      gap: 30px; 
+      margin-bottom: 60px; 
+    }
+    
+    .product-card { 
+      background: var(--card-bg); 
+      border-radius: 12px; 
+      padding: 25px; 
+      transition: all 0.4s ease; 
+      box-shadow: var(--card-shadow); 
+      border: var(--card-border);
+      position: relative; 
+      overflow: hidden; 
+      animation: fadeIn 0.7s ease; 
+    }
+    
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    
+    .product-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .product-card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); 
+      border-color: rgba(102, 0, 204, 0.5);
+    }
+    
+    .product-card h3 { 
+      font-size: 20px; 
+      margin-bottom: 12px; 
+      color: var(--text-primary); 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+    }
+    
+    .product-card h3 i {
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+    
+    .price { 
+      font-size: 24px; 
+      font-weight: 700; 
+      margin-bottom: 15px; 
+      text-shadow: 0 0 5px rgba(204, 0, 0, 0.3);
+    }
+    
+    .original-price {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+      font-size: 0.9em;
+      margin-right: 8px;
+    }
+    
+    .discounted-price {
+      color: var(--accent-green);
+    }
+    
+    .normal-price {
+      color: var(--accent-red);
+    }
+    
+    .description { 
+      margin-bottom: 20px; 
+      color: var(--text-secondary); 
+      font-size: 15px; 
+      line-height: 1.5;
+    }
+    
+    .buy-btn { 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      color: white; 
+      border: none; 
+      padding: 12px; 
+      border-radius: 5px; 
+      font-weight: 500; 
+      cursor: pointer; 
+      transition: 0.3s; 
+      width: 100%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      gap: 8px; 
+      box-shadow: 0 4px 10px rgba(204, 0, 0, 0.2);
+    }
+    
+    .buy-btn:hover { 
+      opacity: 0.9; 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(204, 0, 0, 0.4);
+    }
+    
+    .product-badge { 
+      position: absolute; 
+      top: 15px; 
+      right: 15px; 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      color: white; 
+      padding: 5px 12px; 
+      border-radius: 15px; 
+      font-size: 12px; 
+      font-weight: 600; 
+      box-shadow: 0 3px 10px rgba(204, 0, 0, 0.3);
+    }
+    
+    .discount-badge {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 3px 10px rgba(204, 0, 0, 0.3);
+      z-index: 2;
+      animation: pulse 2s infinite;
+    }
+    
+    /* Payment Methods */
+    .payment-methods { 
+      background: var(--card-bg); 
+      border-radius: 15px; 
+      padding: 30px; 
+      margin-bottom: 50px; 
+      box-shadow: var(--card-shadow); 
+      border: var(--card-border);
+      animation: fadeIn 1s ease; 
+    }
+    
+    .payment-methods h2 { 
+      font-size: 26px; 
+      margin-bottom: 25px; 
+      text-align: center; 
+      color: var(--text-primary); 
+    }
+    
+    .payment-icons { 
+      display: flex; 
+      justify-content: center; 
+      gap: 40px; 
+      flex-wrap: wrap; 
+    }
+    
+    .payment-icon { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      gap: 12px; 
+      transition: 0.3s; 
+    }
+    
+    .payment-icon i { 
+      font-size: 36px; 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+    
+    .payment-icon:hover { 
+      transform: scale(1.1); 
+    }
+    
+    /* Floating Buttons */
+    .float-btn { 
+      position: fixed; 
+      width: 70px; 
+      height: 70px; 
+      border-radius: 50%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      cursor: pointer; 
+      transition: 0.3s; 
+      z-index: 100; 
+      animation: bounce 2s infinite; 
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .telegram-float { 
+      bottom: 25px; 
+      right: 25px; 
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+    }
+    
+    .email-float {
+      bottom: 110px;
+      right: 25px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      animation: bouncePurple 2s infinite;
+    }
+    
+    .security-float {
+      bottom: 195px;
+      right: 25px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+      animation: bounceBlue 2s infinite;
+    }
+    
+    .float-btn i { 
+      font-size: 32px; 
+      color: white; 
+    }
+    
+    .float-btn:hover { 
+      transform: scale(1.15); 
+    }
+    
+    @keyframes bounce { 
+      0%, 100% { transform: translateY(0); } 
+      50% { transform: translateY(-10px); } 
+    }
+    
+    @keyframes bouncePurple { 
+      0%, 100% { transform: translateY(0); } 
+      50% { transform: translateY(-10px); } 
+    }
+    
+    @keyframes bounceBlue { 
+      0%, 100% { transform: translateY(0); } 
+      50% { transform: translateY(-10px); } 
+    }
+    
+    /* Footer */
+    footer { 
+      text-align: center; 
+      padding: 40px 0; 
+      margin-top: 60px; 
+      border-top: 1px solid rgba(102, 0, 204, 0.3); 
+      color: var(--text-secondary); 
+      font-size: 15px; 
+      animation: fadeIn 1s ease; 
+    }
+    
+    .footer-links a { 
+      margin: 0 12px; 
+      text-decoration: none; 
+      color: var(--accent-purple); 
+      font-weight: 500; 
+      transition: 0.3s;
+    }
+    
+    .footer-links a:hover { 
+      color: var(--accent-red);
+      text-decoration: underline;
+    }
+    
+    .footer-contact {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-contact a {
+      color: var(--accent-purple);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .footer-contact a:hover {
+      color: var(--accent-red);
+      text-decoration: underline;
+    }
+    
+    @keyframes fadeIn { 
+      from { opacity:0; transform:translateY(15px); } 
+      to { opacity:1; transform:translateY(0); } 
+    }
+    
+    /* Matrix Rain Effect */
+    .matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.05;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) { 
+      .products-grid { 
+        grid-template-columns: 1fr; 
+      } 
+      
+      header { 
+        flex-direction: column; 
+        gap: 15px; 
+        text-align: center; 
+      } 
+      
+      .header-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .hero h2 { 
+        font-size: 28px; 
+      } 
+      
+      .hero {
+        padding: 30px 20px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-button {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .payment-icons {
+        gap: 25px;
+      }
+      
+      .float-btn {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .email-float {
+        bottom: 90px;
+      }
+      
+      .security-float {
+        bottom: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="loading-spinner"></div>
+    <p>Carregando...</p>
+  </div>
+  
+  <!-- Efeito de partículas -->
+  <div id="particles-js"></div>
+  
+  <!-- Matrix Rain Effect -->
+  <canvas class="matrix-rain" id="matrixRain"></canvas>
+  
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="https://nosense.neocities.org/perfil.png" alt="Logo NoSenseSae">
+        <div>
+          <h1>NOSENSESAE</h1>
+          <span>Serviços Exclusivos</span>
+        </div>
+      </div>
+      <div class="header-buttons">
+        <button class="header-btn" id="themeToggle"><i class="fas fa-moon"></i> Tema</button>
+        <button class="header-btn" id="securityToggle"><i class="fas fa-shield-alt"></i> Segurança</button>
+        <button class="header-btn" id="emailButton"><i class="fas fa-envelope"></i> Contato</button>
+      </div>
+    </header>
+    
+    <!-- Banner de promoção -->
+    <div class="promo-banner" id="promoBanner">
+      <h3><i class="fas fa-tag"></i> PROMOÇÃO RELÂMPAGO - TODOS OS PRODUTOS COM 50% DE DESCONTO!</h3>
+      <p>Oferta válida por tempo limitado</p>
+    </div>
+    
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Eu ofereço as asas pro sonho, mas cobro o preço pra você voar.</h2>
+        <p>Serviços digitais especializados com foco em resultados.</p>
+        <div class="slogan-secondary">
+          <p>Quer ser Funcionário da Vitória Ou Fantasma do Próprio Talento?</p>
+        </div>
+        <div class="cta-buttons">
+          <button class="cta-button"><i class="fab fa-telegram"></i> Telegram</button>
+          <button class="cta-button email"><i class="fas fa-envelope"></i> E-mail</button>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="section-title">Serviços Principais</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fas fa-search"></i> Consulta Completa</h3>
+          <div class="price">
+            <span class="original-price">R$ 5,00</span>
+            <span class="discounted-price">R$ 3,00</span>
+          </div>
+          <div class="description">Busca por telefone, CPF, nome, placa e mais.</div>
+          <button class="buy-btn" data-product="Consulta Completa" data-price="10"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">Popular</div>
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fas fa-desktop"></i> Grupos de Consulta</h3>
+          <div class="price">
+            <span class="original-price">R$ 10,00</span>
+            <span class="discounted-price">R$ 5,00</span>
+          </div>
+          <div class="description">Acesso vitalício a grupos de consulta.</div>
+          <button class="buy-btn" data-product="Grupos de Consulta" data-price="15"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fab fa-whatsapp"></i> Desbanir WhatsApp</h3>
+          <div class="price">
+            <span class="original-price">R$ 6,00</span>
+            <span class="discounted-price">R$ 3,00</span>
+          </div>
+          <div class="description">Método para desbanir seu número.</div>
+          <button class="buy-btn" data-product="Desbanir WhatsApp" data-price="5"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fab fa-whatsapp"></i> Banir WhatsApp</h3>
+          <div class="price">
+            <span class="original-price">R$ 20,00</span>
+            <span class="discounted-price">R$ 10,00</span>
+          </div>
+          <div class="description">Banir um número de WhatsApp.</div>
+          <button class="buy-btn" data-product="Banir WhatsApp" data-price="10"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fab fa-whatsapp"></i> Banir Grupos WhatsApp</h3>
+          <div class="price">
+            <span class="original-price">R$ 20,00</span>
+            <span class="discounted-price">R$ 10,00</span>
+          </div>
+          <div class="description">Método para banir grupos do WhatsApp.</div>
+          <button class="buy-btn" data-product="Banir Grupos WhatsApp" data-price="20"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fab fa-whatsapp"></i> Banir WhatsApp Método</h3>
+          <div class="price">
+            <span class="original-price">R$ 25,00</span>
+            <span class="discounted-price">R$ 12,00</span>
+          </div>
+          <div class="description">Método completo para banir números.</div>
+          <button class="buy-btn" data-product="Banir WhatsApp Método" data-price="15"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fab fa-discord"></i> Doxing Discord</h3>
+          <div class="price">
+            <span class="original-price">R$ 30,00</span>
+            <span class="discounted-price">R$ 15,00</span>
+          </div>
+          <div class="description">Informações detalhadas de perfis Discord.</div>
+          <button class="buy-btn" data-product="Doxing Discord" data-price="15"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fab fa-instagram"></i> Doxing Instagram</h3>
+          <div class="price">
+            <span class="original-price">R$ 25,00</span>
+            <span class="discounted-price">R$ 10,00</span>
+          </div>
+          <div class="description">Dados de contas padrão Instagram.</div>
+          <button class="buy-btn" data-product="Doxing Instagram" data-price="15"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fab fa-facebook"></i> Doxing Facebook</h3>
+          <div class="price">
+            <span class="original-price">R$ 20,00</span>
+            <span class="discounted-price">R$ 10,00</span>
+          </div>
+          <div class="description">Informações detalhadas de perfis Facebook.</div>
+          <button class="buy-btn" data-product="Doxing Facebook" data-price="15"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="discount-badge">-50%</div>
+          <h3><i class="fas fa-phone"></i> Números Virtuais</h3>
+          <div class="price">
+            <span class="original-price">Apartir de: R$ 6,00</span>
+          </div>
+          <div class="description">Números virtuais para diversos fins.</div>
+          <button class="buy-btn" id="virtualNumbersBtn"><i class="fab fa-telegram"></i> Comprar</button>
+        </div>
+      </div>
+    </section>
+    
+    <section class="payment-methods">
+      <h2>Métodos de Pagamento</h2>
+      <div class="payment-icons">
+        <div class="payment-icon">
+          <i class="fab fa-pix"></i>
+          <span>PIX</span>
+        </div>
+        <div class="payment-icon">
+          <i class="fab fa-bitcoin"></i>
+          <span>Bitcoin (Indisponivel)</span>
+        </div>
+        <div class="payment-icon">
+          <i class="fas fa-money-bill-wave"></i>
+          <span>Dinheiro</span>
+        </div>
+        <div class="payment-icon">
+          <i class="fas fa-credit-card"></i>
+          <span>Cartão</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <div class="float-btn telegram-float" id="telegramFloat">
+    <i class="fab fa-telegram"></i>
+  </div>
+  
+  <div class="float-btn email-float" id="emailFloat">
+    <i class="fas fa-envelope"></i>
+  </div>
+  
+  <div class="float-btn security-float" id="securityFloat">
+    <i class="fas fa-shield-alt"></i>
+  </div>
+  
+  <footer>
+    <p>&copy; 2023 NoSenseSae - Todos os direitos reservados</p>
+    <div class="footer-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Contato</a>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:nosensesae@protonmail.com"><i class="fas fa-envelope"></i> nosensesae@protonmail.com</a>
+      <a href="https://t.me/nosensesae" target="_blank"><i class="fab fa-telegram"></i> @nosensesae</a>
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // ===== VARIÁVEIS DE CONTROLE =====
+    // Essas variáveis controlam o comportamento da loja
+    const config = {
+      // Configurações de desconto
+      discountActive: false, // true para ativo, false para inativo
+      discountPercentage: 50, // Percentual de desconto
+      discountName: "PROMOÇÃO RELÂMPAGO", // Nome da promoção
+      
+      // Configurações de contato
+      telegramUsername: "nosensesae",
+      emailAddress: "nosensesae@protonmail.com",
+      
+      // Configurações de segurança
+      securityMode: false, // Modo de segurança (oculta conteúdo sensível)
+      
+      // Textos personalizáveis
+      slogans: {
+        main: "Eu ofereço as asas pro sonho, mas cobro o preço pra você voar.",
+        secondary: "Quer ser Funcionário da Vitória<br>Ou Fantasma do Próprio Talento?"
+      },
+      
+      // Informações da empresa
+      businessName: "NOSENSESAE",
+      businessTagline: "Serviços Exclusivos"
+    };
+    
+    // ===== INICIALIZAÇÃO =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // Remover tela de carregamento
+      setTimeout(() => {
+        document.getElementById('loading').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('loading').style.display = 'none';
+        }, 500);
+      }, 1500);
+      
+      // Inicializar efeito de partículas
+      if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#6600cc" },
+            shape: { type: "circle" },
+            opacity: { value: 0.5, random: true },
+            size: { value: 3, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#cc0000",
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" },
+              resize: true
+            }
+          },
+          retina_detect: true
+        });
+      }
+      
+      // Inicializar Matrix Rain Effect
+      initMatrixRain();
+      
+      // Aplicar configurações iniciais
+      applyConfigurations();
+      
+      // Configurar event listeners
+      setupEventListeners();
+    });
+    
+    // ===== FUNÇÕES PRINCIPAIS =====
+    function applyConfigurations() {
+      // Aplicar desconto se ativo
+      if (config.discountActive) {
+        document.getElementById('promoBanner').style.display = 'block';
+        document.getElementById('promoBanner').querySelector('h3').innerHTML = 
+          `<i class="fas fa-tag"></i> ${config.discountName} - TODOS OS PRODUTOS COM ${config.discountPercentage}% DE DESCONTO!`;
+          
+        // Mostrar badges de desconto
+        document.querySelectorAll('.discount-badge').forEach(badge => {
+          badge.style.display = 'block';
+        });
+      } else {
+        document.getElementById('promoBanner').style.display = 'none';
+        
+        // Esconder badges de desconto
+        document.querySelectorAll('.discount-badge').forEach(badge => {
+          badge.style.display = 'none';
+        });
+        
+        // Mostrar preços normais
+        document.querySelectorAll('.product-card').forEach(card => {
+          const priceElement = card.querySelector('.price');
+          const originalPrice = card.querySelector('.original-price');
+          const discountedPrice = card.querySelector('.discounted-price');
+          
+          if (originalPrice && discountedPrice) {
+            priceElement.innerHTML = `<span class="normal-price">${originalPrice.textContent.replace('R$ ', '')}</span>`;
+          }
+        });
+      }
+      
+      // Aplicar modo de segurança se ativo
+      if (config.securityMode) {
+        document.body.classList.add('security-mode');
+        document.getElementById('securityToggle').innerHTML = '<i class="fas fa-shield-alt"></i> Modo Normal';
+        document.getElementById('securityFloat').innerHTML = '<i class="fas fa-eye"></i>';
+      } else {
+        document.body.classList.remove('security-mode');
+        document.getElementById('securityToggle').innerHTML = '<i class="fas fa-shield-alt"></i> Modo Seguro';
+        document.getElementById('securityFloat').innerHTML = '<i class="fas fa-shield-alt"></i>';
+      }
+      
+      // Aplicar textos personalizados
+      document.querySelector('.hero h2').textContent = config.slogans.main;
+      document.querySelector('.slogan-secondary p').innerHTML = config.slogans.secondary;
+      document.querySelector('.logo h1').textContent = config.businessName;
+      document.querySelector('.logo span').textContent = config.businessTagline;
+    }
+    
+    function setupEventListeners() {
+      // Botões de compra
+      document.querySelectorAll('.buy-btn:not([id="virtualNumbersBtn"])').forEach(button => {
+        button.addEventListener('click', function() {
+          const product = this.getAttribute('data-product');
+          const price = this.getAttribute('data-price');
+          openTelegram(product, price);
+        });
+      });
+      
+      // Botão de números virtuais
+      document.getElementById('virtualNumbersBtn').addEventListener('click', function() {
+        window.open('https://t.me/smsfull_bot?start=7872001502', '_blank');
+      });
+      
+      // Botões de contato
+      document.getElementById('telegramFloat').addEventListener('click', function() {
+        openTelegram('Contato', '');
+      });
+      
+      document.getElementById('emailFloat').addEventListener('click', function() {
+        window.location.href = `mailto:${config.emailAddress}`;
+      });
+      
+      document.querySelector('.cta-button:not(.email)').addEventListener('click', function() {
+        openTelegram('Contato', '');
+      });
+      
+      document.querySelector('.cta-button.email').addEventListener('click', function() {
+        window.location.href = `mailto:${config.emailAddress}`;
+      });
+      
+      document.getElementById('emailButton').addEventListener('click', function() {
+        window.location.href = `mailto:${config.emailAddress}`;
+      });
+      
+      // Toggle de tema
+      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+      
+      // Toggle de segurança
+      document.getElementById('securityToggle').addEventListener('click', toggleSecurityMode);
+      document.getElementById('securityFloat').addEventListener('click', toggleSecurityMode);
+    }
+    
+    function openTelegram(product, price) {
+      let message = `Olá, gostaria de comprar: ${product}`;
+      if (price) {
+        message += ` - R$ ${price},00`;
+      }
+      const telegramUrl = `https://t.me/${config.telegramUsername}?start=${encodeURIComponent(message)}`;
+      window.open(telegramUrl, '_blank');
+    }
+    
+    function toggleTheme() {
+      const isDark = document.body.classList.contains('dark-theme');
+      if (isDark) {
+        document.body.classList.remove('dark-theme');
+        document.getElementById('themeToggle').innerHTML = '<i class="fas fa-moon"></i> Tema Escuro';
+      } else {
+        document.body.classList.add('dark-theme');
+        document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i> Tema Claro';
+      }
+    }
+    
+    function toggleSecurityMode() {
+      config.securityMode = !config.securityMode;
+      applyConfigurations();
+    }
+    
+    function initMatrixRain() {
+      const canvas = document.getElementById('matrixRain');
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&!*';
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      
+      const drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = 1;
+      }
+      
+      function draw() {
+        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00cc66';
+        ctx.font = `${fontSize}px monospace`;
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = characters.charAt(Math.floor(Math.random() * characters.length));
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          drops[i]++;
+        }
+      }
+      
+      setInterval(draw, 33);
+      
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    }
+    
+    // Expor configurações globalmente para fácil acesso
+    window.storeConfig = config;
+  </script>
+</body>
+</html>
